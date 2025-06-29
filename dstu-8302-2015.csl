@@ -465,7 +465,7 @@
             <choose>
               <if match="any" variable="volume">
                 <text variable="collection-title" prefix="(Серія &quot;" suffix="&quot;, "/>
-                <text variable="volume" prefix="Т. "/>
+                <text variable="volume" prefix="Т. " suffix=")"/>
               </if>
               <else>
                 <text variable="collection-title" prefix="(Серія &quot;" suffix="&quot;)"/>
