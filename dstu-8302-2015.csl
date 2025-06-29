@@ -416,7 +416,7 @@
             <choose>
               <if match="none" is-uncertain-date="event-date">
                 <text value=", "/>
-                <date delimiter="." variable="issued">
+                <date delimiter="." variable="issued" suffix=". ">
                   <date-part name="year"/>
                 </date>
               </if>
@@ -665,13 +665,15 @@
           <text macro="Internet-resources"/>
         </else-if>
         <else-if type="paper-conference" match="any">
-          <text macro="author-all" suffix=" "/>
-          <text macro="section-title" suffix=". "/>
-          <text macro="container-title"/>
-          <text macro="collection-title(series)" suffix=". "/>
-          <text macro="publisher_(for_conferences)"/>
-          <text macro="Internet-resources"/>
-          <text macro="additional_fields(arj_nos_etc)" suffix=". "/>
+          <group delimiter=". ">
+            <text macro="author-all" suffix=""/>
+            <text macro="section-title"/>
+            <text macro="container-title"/>
+            <text macro="collection-title(series)"/>
+            <text macro="publisher_(for_conferences)"/>
+            <text macro="Internet-resources"/>
+            <text macro="additional_fields(arj_nos_etc)"/>
+          </group>
           <text macro="page"/>
         </else-if>
         <else-if type="broadcast motion_picture song" match="any">
