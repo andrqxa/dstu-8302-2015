@@ -69,14 +69,14 @@
   <macro name="author-all">
     <choose>
       <if variable="language">
-        <names variable="author" delimiter=", " delimiter-precedes-last="never">
-          <name et-al-min="4" et-al-use-first="3" initialize-with=". " name-as-sort-order="all" sort-separator=" "/>
+        <names variable="author" delimiter=", ">
+          <name et-al-min="4" et-al-use-first="3" initialize-with=". " name-as-sort-order="all" sort-separator=" " delimiter-precedes-et-al="never"/>
           <et-al term="et-al-empty"/>
         </names>
       </if>
       <else>
-        <names variable="author" delimiter=", " delimiter-precedes-last="never">
-          <name et-al-min="4" et-al-use-first="3" initialize-with=". " name-as-sort-order="all" sort-separator=" "/>
+        <names variable="author" delimiter=", ">
+          <name et-al-min="4" et-al-use-first="3" initialize-with=". " name-as-sort-order="all" sort-separator=" " delimiter-precedes-et-al="never"/>
           <et-al term="et-ale"/>
         </names>
       </else>
@@ -85,14 +85,14 @@
   <macro name="translator">
     <choose>
       <if variable="language">
-        <names variable="translator" delimiter=", " prefix="пер. " delimiter-precedes-last="never">
-          <name et-al-min="3" et-al-use-first="3" initialize-with=". " name-as-sort-order="all" sort-separator=" "/>
+        <names variable="translator" delimiter=", " prefix="пер. ">
+          <name et-al-min="3" et-al-use-first="3" initialize-with=". " name-as-sort-order="all" sort-separator=" " delimiter-precedes-et-al="never"/>
           <et-al term="et-al"/>
         </names>
       </if>
       <else>
-        <names variable="translator" delimiter=", " prefix="transl. by " delimiter-precedes-last="never" >
-          <name et-al-min="3" et-al-use-first="3" initialize-with=". " name-as-sort-order="all" sort-separator=" "/>
+        <names variable="translator" delimiter=", " prefix="transl. by ">
+          <name et-al-min="3" et-al-use-first="3" initialize-with=". " name-as-sort-order="all" sort-separator=" " delimiter-precedes-et-al="never" />
           <et-al term="et-ale"/>
         </names>
       </else>
@@ -101,14 +101,14 @@
   <macro name="editor">
     <choose>
       <if variable="language">
-        <names variable="editor reviewed-author collection-editor" delimiter=", " prefix="/ " delimiter-precedes-last="never" >
-          <name et-al-min="3" et-al-use-first="3" initialize-with=". " name-as-sort-order="all" sort-separator=" "/>
+        <names variable="editor reviewed-author collection-editor" delimiter=", " prefix="/ ">
+          <name et-al-min="3" et-al-use-first="3" initialize-with=". " name-as-sort-order="all" sort-separator=" " delimiter-precedes-et-al="never"/>
           <et-al term="et-al"/>
         </names>
       </if>
       <else>
-        <names variable="editor reviewed-author collection-editor" delimiter=", " prefix="/ ed. " delimiter-precedes-last="never">
-          <name et-al-min="3" et-al-use-first="3" initialize-with=". " name-as-sort-order="all" sort-separator=" "/>
+        <names variable="editor reviewed-author collection-editor" delimiter=", " prefix="/ ed. ">
+          <name et-al-min="3" et-al-use-first="3" initialize-with=". " name-as-sort-order="all" sort-separator=" " delimiter-precedes-et-al="never"/>
           <et-al term="et-ale"/>
         </names>
       </else> 
@@ -240,7 +240,6 @@
           <if match="any" variable="volume">
             <text value=", "/>
           </if>
-          <else/>
         </choose>
         <text macro="If_event_date_exists" suffix=". "/>
       </else-if>
