@@ -76,7 +76,7 @@
       </if>
       <else>
         <names variable="author" delimiter=", ">
-          <name et-al-min="4" et-al-use-first="3" initialize-with=". " name-as-sort-order="all" sort-separator=" "/>
+          <name et-al-min="4" et-al-use-first="3" delimiter-precedes-last="never" initialize-with=". " name-as-sort-order="all" sort-separator=" "/>
           <et-al term="et-ale"/>
         </names>
       </else>
@@ -369,6 +369,9 @@
       </if>
     </choose>
   </macro>
+  <macro name="conference-name">
+    <text variable="event" font-style="italic"/>
+  </macro>
   <macro name="publisher-for-conferences">
     <choose>
       <if match="any" variable="event">
@@ -590,17 +593,15 @@
       <text variable="citation-number" strip-periods="false" suffix=". "/>
       <choose>
         <if type="article-journal article-magazine article-newspaper entry-dictionary entry-encyclopedia" match="any">
-          <group delimiter=". ">
-            <text macro="author-all" suffix=" "/>
-            <text macro="section-title"/>
-            <text macro="abstract_insert"/>
-            <text macro="container-title"/>  
-            <text macro="collection-title-series"/>
-            <text macro="editor"/>
-            <text macro="volume-issue-edition-commas_formatted"/>
-            <text macro="page"/>
-            <text macro="Internet-resources"/>
-          </group>
+          <text macro="author-all" suffix=". "/>
+          <text macro="section-title" suffix=". "/>
+          <text macro="abstract_insert" suffix=". "/>
+          <text macro="container-title" suffix=". "/>
+          <text macro="collection-title-series"/>
+          <text macro="editor" suffix=". "/>
+          <text macro="volume-issue-edition-commas_formatted"/>
+          <text macro="page"/>
+          <text macro="Internet-resources"/>
         </if>
         <else-if type="chapter" match="any">
           <text macro="author-all" suffix=". "/>
@@ -614,93 +615,79 @@
           <text macro="Internet-resources"/>
         </else-if>
         <else-if type="book article thesis" match="any">
-          <group delimiter=". ">
-            <text macro="author-all" suffix=" "/>
-            <text macro="section-title"/>
-            <text macro="abstract_insert"/>
-            <text macro="editor"/>
-            <text macro="Edition-nr"/>
-            <text macro="translator"/>
-            <text macro="publisher"/>
-            <text macro="number-of-pages"/>
-            <text macro="additional_fields-arj_nos_etc" prefix="[" suffix="]. "/>
-            <text macro="collection-title-series" font-style="normal"/>
-            <text macro="Internet-resources"/>
-          </group>
+          <text macro="author-all" suffix=" "/>
+          <text macro="section-title" suffix=". "/>
+          <text macro="abstract_insert" suffix=". "/>
+          <text macro="editor" suffix=". "/>
+          <text macro="Edition-nr" suffix=". "/>
+          <text macro="translator" suffix=" "/>
+          <text macro="publisher"/>
+          <text macro="number-of-pages"/>
+          <text macro="additional_fields-arj_nos_etc" prefix="[" suffix="]. "/>
+          <text macro="collection-title-series" font-style="normal" suffix=". "/>
+          <text macro="Internet-resources"/>
         </else-if>
         <else-if type="paper-conference" match="any">
-          <group delimiter=". ">
-            <choose>
-              <if match="any" variable="author">
-                  <text macro="author-all" suffix=" "/>
-              </if>
-            </choose>
-            <text macro="section-title"/>
-            <text macro="container-title"/>
+            <text macro="author-all" suffix=" "/>
+            <text macro="section-title"  suffix=". "/>
+            <text macro="container-title" suffix=" : "/>
+            <text macro="conference-name" suffix=" "/>
+            <text macro="editor" suffix=" "/>
             <text macro="collection-title-series"/>
-            <text macro="publisher-for-conferences"/>
             <text macro="Internet-resources"/>
             <text macro="additional_fields-arj_nos_etc"/>
-          </group>
-          <text macro="page"/>
+            <text macro="publisher"/>
+            <text macro="page"/>
         </else-if>
         <else-if type="broadcast motion_picture song" match="any">
-          <group delimiter=". ">
-            <text macro="author-all" suffix=" "/>
-            <text macro="section-title"/>
-            <text macro="abstract_insert" prefix=" "/>
-            <text macro="If_event_date_exists" prefix="(" suffix="). "/>
-            <text macro="publisher"/>
-            <text macro="additional_fields-arj_nos_etc"/>
-            <text macro="URL_insert"/>
-          </group>
+          <text macro="author-all" suffix=" "/>
+          <text macro="section-title" suffix=". "/>
+          <text macro="abstract_insert" prefix=" " suffix=". "/>
+          <text macro="If_event_date_exists" prefix="(" suffix="). "/>
+          <text macro="publisher"/>
+          <text macro="additional_fields-arj_nos_etc" suffix=". "/>
+          <text macro="URL_insert"/>
         </else-if>
         <else-if type="post-weblog post webpage" match="any">
-          <group delimiter=". ">
-            <text macro="author-all" suffix=" "/>
-            <text macro="abstract_insert" prefix=" "/>
-            <text macro="section-title" suffix=". "/>
-            <text macro="container-title" suffix=". "/>
-            <text macro="abstract_insert" suffix=". "/>
-            <text macro="If_event_date_exists" suffix=". "/>
-            <text macro="URL_insert"/>
-          </group>
+          <text macro="author-all" suffix=" "/>
+          <text macro="abstract_insert" prefix=" " suffix=". "/>
+          <text macro="section-title" suffix=". "/>
+          <text macro="container-title" suffix=". "/>
+          <text macro="abstract_insert" suffix=". "/>
+          <text macro="If_event_date_exists" suffix=". "/>
+          <text macro="URL_insert"/>
         </else-if>
         <else-if type="legislation bill" match="any">
-          <group delimiter=". ">
-            <text macro="section-title"/>
-            <text macro="abstract_insert" prefix=" "/>
-            <text macro="If_event_date_exists" prefix="(Перша редакція " suffix="). "/>
-            <text variable="volume"/>
-            <text variable="number" prefix="№"/>
-            <text variable="references"/>
-            <choose>
-              <if match="any" variable="section">
-                <text variable="section"/>
-              </if>
-            </choose>
-            <text variable="chapter-number"/>
-            <text variable="page" suffix=" с."/>
-            <text variable="container-title" prefix="(" suffix=")"/>
-            <text macro="URL_insert" prefix=" Також доступний за "/>
-          </group>
+          <text macro="section-title" suffix=". "/>
+          <text macro="abstract_insert" prefix=" " suffix=". "/>
+          <text macro="If_event_date_exists" prefix="(Перша редакція " suffix="). "/>
+          <text variable="volume"/>
+          <text variable="number" prefix="№" suffix=". "/>
+          <text variable="references"/>
+          <choose>
+            <if match="any" variable="section">
+              <text variable="section" suffix=". "/>
+            </if>
+          </choose>
+          <text variable="chapter-number"/>
+          <text variable="page" suffix=" с."/>
+          <text variable="container-title" prefix="(" suffix=")"/>
+          <text macro="URL_insert" prefix="Також доступний за "/>
         </else-if>
         <else>
-          <group delimiter=". ">
-            <text macro="author-all" suffix=" "/>
-            <text macro="section-title"/>
-            <text macro="editor"/>
-            <text macro="translator"/>
-            <text macro="container-title"/>
-            <text macro="translator"/>
-            <text macro="collection-title-series"/>
-            <text macro="publisher-for-conferences"/>
-            <text macro="page"/>
-            <text macro="number-of-pages"/>
-            <text macro="Internet-resources"/>
-            <text macro="additional_fields-arj_nos_etc"/>
-            <text macro="year"/>
-          </group>
+          <text macro="author-all" suffix=". "/>
+          <text macro="section-title" suffix=". "/>
+          <text macro="editor" suffix=". "/>
+          <text macro="translator" suffix=" "/>
+          <text macro="container-title" suffix=". "/>
+          <text macro="translator"/>
+          <text macro="collection-title-series" suffix=". "/>
+          <text macro="publisher-for-conferences"/>
+          <text macro="page"/>
+          <text macro="number-of-pages"/>
+          <text macro="Internet-resources"/>
+          <text macro="additional_fields-arj_nos_etc"/>
+          <text macro="year" suffix=". "/>
         </else>
       </choose>
     </layout>
