@@ -448,9 +448,9 @@
     <choose>
       <if type="article book" match="any">
         <choose>
-          <if match="any" variable="language">
+          <if variable="language">
             <choose>
-              <if match="any" variable="volume">
+              <if variable="volume">
                 <text variable="collection-title" prefix="(Серія &quot;" suffix="&quot;, "/>
                 <text variable="volume" prefix="Т. " suffix=")"/>
               </if>
@@ -660,7 +660,7 @@
           <text variable="number" prefix="№" suffix=". "/>
           <text variable="references"/>
           <choose>
-            <if match="any" variable="section">
+            <if variable="section">
               <text variable="section" suffix=". "/>
             </if>
           </choose>
