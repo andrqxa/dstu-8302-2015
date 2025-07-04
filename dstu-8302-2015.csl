@@ -67,20 +67,17 @@
     </terms>
   </locale>
   <macro name="author-all">
-    <choose>
-      <if variable="language">
-        <names variable="author" delimiter=", ">
-          <name et-al-min="4" et-al-use-first="3" initialize-with=". " name-as-sort-order="all" sort-separator=" " delimiter-precedes-et-al="never"/>
+    <names variable="author" delimiter=", ">
+      <name et-al-min="3" et-al-use-first="3" initialize-with=". " name-as-sort-order="all" sort-separator=" " delimiter-precedes-et-al="never"/>
+      <choose>
+        <if variable="language">
           <et-al term="et-al-empty"/>
-        </names>
-      </if>
-      <else>
-        <names variable="author" delimiter=", ">
-          <name et-al-min="4" et-al-use-first="3" initialize-with=". " name-as-sort-order="all" sort-separator=" " delimiter-precedes-et-al="never"/>
+        </if>
+        <else>
           <et-al term="et-ale"/>
-        </names>
-      </else>
+        </else>
     </choose>
+  </names>
   </macro>
   <macro name="translator">
     <choose>
@@ -647,7 +644,6 @@
           <text macro="abstract_insert" prefix=" " suffix=". "/>
           <text macro="section-title" suffix=". "/>
           <text macro="container-title" suffix=". "/>
-          <text macro="abstract_insert" suffix=". "/>
           <text macro="If_event_date_exists" suffix=". "/>
           <text macro="URL_insert"/>
         </else-if>
