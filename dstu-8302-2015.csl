@@ -123,10 +123,10 @@
   </macro>
   <macro name="publisher">
     <choose>
-      <if match="any" variable="publisher-place">
+      <if variable="publisher-place">
         <text variable="publisher-place"/>
         <choose>
-          <if match="any" variable="publisher">
+          <if variable="publisher">
             <text value=" : "/>
           </if>
           <else>
@@ -143,7 +143,7 @@
       </if>
     </choose>
     <choose>
-      <if match="any" variable="publisher">
+      <if variable="publisher">
         <text variable="publisher"/>
         <choose>
           <if match="all" variable="issued">
@@ -198,11 +198,11 @@
   </macro>
   <macro name="volume">
     <choose>
-      <if match="any" variable="volume">
+      <if variable="volume">
         <choose>
-          <if match="any" variable="language">
+          <if variable="language">
             <choose>
-              <if match="any" is-numeric="volume">
+              <if is-numeric="volume">
                 <text value="Вип. "/>
               </if>
             </choose>
@@ -213,19 +213,19 @@
         </choose>
         <text variable="volume"/>
         <choose>
-          <if match="any" variable="issue">
+          <if variable="issue">
             <text value=", "/>
           </if>
         </choose>
       </if>
     </choose>
     <choose>
-      <if match="any" variable="issue">
+      <if variable="issue">
         <text macro="issue"/>
       </if>
       <else-if match="none" is-uncertain-date="event-date">
         <choose>
-          <if match="any" variable="volume">
+          <if variable="volume">
             <text value=", "/>
           </if>
         </choose>
@@ -235,9 +235,9 @@
   </macro>
   <macro name="issue">
     <choose>
-      <if match="any" variable="language">
+      <if variable="language">
         <choose>
-          <if match="any" is-numeric="issue">
+          <if is-numeric="issue">
             <label variable="issue" form="short"/>
           </if>
         </choose>
@@ -251,7 +251,7 @@
   </macro>
   <macro name="page">
     <choose>
-      <if match="any" variable="language">
+      <if variable="language">
         <label suffix=" " variable="page" form="short"/>
       </if>
       <else>
@@ -263,7 +263,7 @@
   <macro name="number-of-pages">
     <text variable="number-of-pages"/>
     <choose>
-      <if match="any" variable="language">
+      <if variable="language">
         <label suffix=" " variable="number-of-pages"/>
       </if>
       <else>
@@ -276,7 +276,7 @@
       <if match="all" variable="DOI">
         <text variable="DOI" prefix="DOI:" suffix=". "/>
       </if>
-      <else-if match="any" variable="URL">
+      <else-if variable="URL">
         <choose>
           <if match="any" variable="page number-of-pages publisher-place">
             <choose>
@@ -303,9 +303,9 @@
   </macro>
   <macro name="if_accessed">
     <choose>
-      <if match="any" variable="accessed">
+      <if variable="accessed">
         <choose>
-          <if match="any" variable="language">
+          <if variable="language">
             <date delimiter="." variable="accessed" text-case="lowercase" font-variant="normal" prefix="(дата звернення: " suffix=").">
               <date-part name="day" form="numeric-leading-zeros"/>
               <date-part name="month" form="numeric-leading-zeros"/>
@@ -321,7 +321,7 @@
   </macro>
   <macro name="URL_insert">
     <choose>
-      <if match="any" variable="URL">
+      <if variable="URL">
         <text variable="URL" prefix="URL: " suffix=" "/>
       </if>
     </choose>
@@ -329,17 +329,17 @@
   </macro>
   <macro name="additional_fields-arj_nos_etc">
     <choose>
-      <if match="any" variable="call-number">
+      <if variable="call-number">
         <text variable="call-number"/>
       </if>
-      <else-if match="any" variable="dimensions">
+      <else-if variable="dimensions">
         <text macro="dimensions"/>
       </else-if>
     </choose>
   </macro>
   <macro name="Edition-nr">
     <choose>
-      <if match="any" variable="edition">
+      <if variable="edition">
         <choose>
           <if variable="language" match="all">
             <text variable="edition"/>
@@ -356,11 +356,11 @@
   </macro>
   <macro name="publisher-for-conferences">
     <choose>
-      <if match="any" variable="event">
+      <if variable="event">
         <text variable="event" font-style="italic" suffix=". "/>
         <choose>
           <if match="all" variable="collection-title"/>
-          <else-if match="any" variable="volume">
+          <else-if variable="volume">
             <text macro="volume"/>
           </else-if>
         </choose>
@@ -375,10 +375,10 @@
       </if>
     </choose>
     <choose>
-      <if match="any" variable="publisher-place">
+      <if variable="publisher-place">
         <text variable="publisher-place"/>
         <choose>
-          <if match="any" variable="publisher">
+          <if variable="publisher">
             <text value=" : "/>
           </if>
           <else>
@@ -398,7 +398,7 @@
       </if>
     </choose>
     <choose>
-      <if match="any" variable="publisher">
+      <if variable="publisher">
         <text variable="publisher"/>
         <choose>
           <if match="none" is-uncertain-date="event-date">
@@ -415,7 +415,7 @@
   </macro>
   <macro name="abstract_insert">
     <choose>
-      <if match="any" variable="abstract">
+      <if variable="abstract">
         <text variable="abstract"/>
       </if>
     </choose>
@@ -433,7 +433,7 @@
   </macro>
   <macro name="collection-title-series">
     <choose>
-      <if type="article book" match="any">
+      <if match="any" type="article book">
         <choose>
           <if variable="language">
             <choose>
@@ -459,9 +459,9 @@
           </else>
         </choose>
       </if>
-      <else-if type="article-journal article-magazine article-newspaper entry-dictionary entry-encyclopedia" match="any">
+      <else-if match="any" type="article-journal article-magazine article-newspaper entry-dictionary entry-encyclopedia">
         <choose>
-          <if match="any" variable="language">
+          <if variable="language">
             <text variable="collection-title" prefix="(Серія &quot;" suffix="&quot;). "/>
           </if>
           <else>
@@ -486,10 +486,10 @@
       <if type="motion_picture broadcast song" match="any" variable="medium">
         <text term="sort_video"/>
       </if>
-      <else-if type="musical_score article" match="any">
+      <else-if match="any" type="musical_score article">
         <text term="sort_sheet_music"/>
       </else-if>
-      <else-if type="graphic" match="any">
+      <else-if type="graphic">
         <text term="sort_graphic"/>
       </else-if>
       <else>
@@ -497,7 +497,7 @@
       </else>
     </choose>
     <choose>
-      <if match="any" variable="language">
+      <if variable="language">
         <text term="sort_language_cyr"/>
       </if>
       <else>
@@ -509,7 +509,7 @@
   </macro>
   <macro name="document_type_insert">
     <choose>
-      <if type="thesis" match="any">
+      <if type="thesis">
         <text value=" : "/>
         <choose>
           <if match="all" variable="language">
@@ -520,7 +520,7 @@
           </else>
         </choose>
       </if>
-      <else-if match="any" variable="medium">
+      <else-if variable="medium">
         <text value=" : "/>
         <text variable="medium"/>
       </else-if>
@@ -528,7 +528,7 @@
   </macro>
   <macro name="dimensions">
     <choose>
-      <if type="broadcast motion_picture" match="any">
+      <if match="any" type="broadcast motion_picture">
         <choose>
           <if variable="language" match="all">
             <text variable="dimensions" prefix="Тривалість: "/>
@@ -547,15 +547,15 @@
     <layout delimiter="; " prefix="[" suffix="]">
       <text variable="citation-number" form="short"/>
       <choose>
-        <if match="any" variable="locator">
+        <if variable="locator">
           <choose>
-            <if match="any" locator="page">
+            <if locator="page">
               <text value=", c."/>
             </if>
-            <else-if match="any" locator="volume">
+            <else-if locator="volume">
               <text value=", т."/>
             </else-if>
-            <else-if match="any" locator="chapter">
+            <else-if locator="chapter">
               <text value=", ч."/>
             </else-if>
             <else>
@@ -574,7 +574,7 @@
     <layout>
       <text variable="citation-number" strip-periods="false" suffix=". "/>
       <choose>
-        <if type="article-journal article-magazine article-newspaper entry-dictionary entry-encyclopedia" match="any">
+        <if match="any" type="article-journal article-magazine article-newspaper entry-dictionary entry-encyclopedia">
           <text macro="author-all" suffix=". "/>
           <text macro="section-title" suffix=". "/>
           <text macro="abstract_insert" suffix=". "/>
@@ -585,7 +585,7 @@
           <text macro="page"/>
           <text macro="Internet-resources"/>
         </if>
-        <else-if type="chapter" match="any">
+        <else-if type="chapter">
           <text macro="author-all" suffix=". "/>
           <text macro="section-title" suffix=". "/>
           <text macro="abstract_insert" prefix=" " suffix=". "/>
@@ -597,7 +597,7 @@
           <text macro="page"/>
           <text macro="Internet-resources"/>
         </else-if>
-        <else-if type="book article thesis" match="any">
+        <else-if match="any" type="book article thesis">
           <text macro="author-all" suffix=" "/>
           <text macro="section-title" suffix=". "/>
           <text macro="abstract_insert" suffix=". "/>
@@ -610,7 +610,7 @@
           <text macro="collection-title-series" font-style="normal" suffix=". "/>
           <text macro="Internet-resources"/>
         </else-if>
-        <else-if type="paper-conference" match="any">
+        <else-if type="paper-conference">
             <text macro="author-all" suffix=" "/>
             <text macro="section-title"  suffix=". "/>
             <text macro="container-title" suffix=" : "/>
@@ -622,7 +622,7 @@
             <text macro="publisher"/>
             <text macro="page"/>
         </else-if>
-        <else-if type="broadcast motion_picture song" match="any">
+        <else-if match="any" type="broadcast motion_picture song">
           <text macro="author-all" suffix=" "/>
           <text macro="section-title" suffix=". "/>
           <text macro="abstract_insert" prefix=" " suffix=". "/>
@@ -631,7 +631,7 @@
           <text macro="additional_fields-arj_nos_etc" suffix=". "/>
           <text macro="URL_insert"/>
         </else-if>
-        <else-if type="post-weblog post webpage" match="any">
+        <else-if match="any" type="post-weblog post webpage">
           <text macro="author-all" suffix=" "/>
           <text macro="abstract_insert" prefix=" " suffix=". "/>
           <text macro="section-title" suffix=". "/>
@@ -639,7 +639,7 @@
           <text macro="If_event_date_exists" suffix=". "/>
           <text macro="URL_insert"/>
         </else-if>
-        <else-if type="legislation bill" match="any">
+        <else-if match="any" type="legislation bill">
           <text macro="section-title" suffix=". "/>
           <text macro="abstract_insert" prefix=" " suffix=". "/>
           <text macro="If_event_date_exists" prefix="(Перша редакція " suffix="). "/>
