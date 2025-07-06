@@ -67,17 +67,20 @@
     </terms>
   </locale>
   <macro name="author-all">
-    <names variable="author" delimiter=", ">
-      <name et-al-min="3" et-al-use-first="3" initialize-with=". " name-as-sort-order="all" sort-separator=" " delimiter-precedes-et-al="never"/>
-      <choose>
-        <if variable="language">
+    <choose>
+      <if variable="language">
+        <names variable="author" delimiter=", ">
+          <name et-al-min="3" et-al-use-first="3" initialize-with=". " name-as-sort-order="all" sort-separator=" " delimiter-precedes-et-al="never"/>
           <et-al term="et-al-empty"/>
-        </if>
-        <else>
+        </names>
+      </if>
+      <else>
+        <names variable="author" delimiter=", ">
+          <name et-al-min="3" et-al-use-first="3" initialize-with=". " name-as-sort-order="all" sort-separator=" " delimiter-precedes-et-al="never"/>
           <et-al term="et-ale"/>
-        </else>
-      </choose>
-    </names>
+        </names>
+      </else>
+    </choose>
   </macro>
   <macro name="translator">
     <choose>
