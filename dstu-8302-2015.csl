@@ -76,8 +76,8 @@
         <else>
           <et-al term="et-ale"/>
         </else>
-    </choose>
-  </names>
+      </choose>
+    </names>
   </macro>
   <macro name="translator">
     <choose>
@@ -89,7 +89,7 @@
       </if>
       <else>
         <names variable="translator" delimiter=", " prefix="transl. by ">
-          <name et-al-min="3" et-al-use-first="3" initialize-with=". " name-as-sort-order="all" sort-separator=" " delimiter-precedes-et-al="never" />
+          <name et-al-min="3" et-al-use-first="3" initialize-with=". " name-as-sort-order="all" sort-separator=" " delimiter-precedes-et-al="never"/>
           <et-al term="et-ale"/>
         </names>
       </else>
@@ -176,34 +176,22 @@
     </date>
   </macro>
   <macro name="volume-for-books-T">
-    <choose>
-      <if match="any" variable="language">
-        <text value="Т. "/>
-      </if>
-      <else>
-        <label suffix=". " variable="volume" form="short"/>
-      </else>
-    </choose>
-    <text variable="volume"/>
-    <choose>
-      <if match="any" variable="issue">
-        <text value=", "/>
-      </if>
-      <else>
-        <text value=". "/>
-      </else>
-    </choose>
-    <choose>
-      <if match="any" variable="issue">
-        <text macro="issue"/>
-      </if>
-      <else-if match="none" is-uncertain-date="event-date">
-        <text value=", "/>
-      </else-if>
-      <else>
-        <text value="."/>
-      </else>
-    </choose>
+    <group delimiter=", " suffix=".">
+      <choose>
+        <if variable="language">
+          <group delimiter=", ">
+            <text variable="volume" prefix="Т. "/>
+            <text variable="issue" prefix="Вип. "/>
+          </group>
+        </if>
+        <else>
+          <group delimiter=", ">
+            <text variable="volume" prefix="Vol. "/>
+            <text variable="issue" prefix="Issue "/>
+          </group>
+        </else>
+      </choose>
+    </group>
   </macro>
   <macro name="volume">
     <choose>
@@ -599,6 +587,7 @@
           <text macro="section-title" suffix=". "/>
           <text macro="abstract_insert" prefix=" " suffix=". "/>
           <text macro="container-title" suffix=". "/>
+          <text macro="volume-for-books-T" suffix=" "/>
           <text macro="editor" suffix=". "/>
           <text macro="translator" suffix=" "/>
           <text macro="publisher"/>
