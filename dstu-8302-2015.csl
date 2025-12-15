@@ -23,13 +23,13 @@
   </info>
   <locale>
     <terms>
-      <term name="editor">ред. </term>
+      <term name="editor">ред.</term>
       <term name="et-al">та ін.</term>
       <term name="et-ale">et al.</term>
       <term name="et-al-empty"></term>
       <term name="page" form="short">С.</term>
       <term name="number-of-pages"> с.</term>
-      <term name="issue" form="short">№ </term>
+      <term name="issue" form="short">№&#160;</term>
       <term name="sort_video">zzzzzzzzzzzzzzzz_30_video</term>
       <term name="sort_sheet_music">zzzzzzzzzzzzzzzz_20_sheet_music</term>
       <term name="sort_articles_and_books">zzzzzzzzzzzzzzzz_10_articles_and_books</term>
@@ -70,13 +70,13 @@
     <choose>
       <if variable="language">
         <names variable="author" delimiter=", ">
-          <name et-al-min="3" et-al-use-first="3" initialize-with=". " name-as-sort-order="all" sort-separator=" " delimiter-precedes-et-al="never"/>
+          <name et-al-min="3" et-al-use-first="3" initialize-with=".&#160;" name-as-sort-order="all" sort-separator="&#160;" delimiter-precedes-et-al="never" />
           <et-al term="et-al-empty"/>
         </names>
       </if>
       <else>
         <names variable="author" delimiter=", ">
-          <name et-al-min="3" et-al-use-first="3" initialize-with=". " name-as-sort-order="all" sort-separator=" " delimiter-precedes-et-al="never"/>
+          <name et-al-min="3" et-al-use-first="3" initialize-with=".&#160;" name-as-sort-order="all" sort-separator="&#160;" delimiter-precedes-et-al="never" />
           <et-al term="et-ale"/>
         </names>
       </else>
@@ -85,14 +85,14 @@
   <macro name="translator">
     <choose>
       <if variable="language">
-        <names variable="translator" delimiter=", " prefix="пер. ">
-          <name et-al-min="3" et-al-use-first="3" initialize-with=". " name-as-sort-order="all" sort-separator=" " delimiter-precedes-et-al="never"/>
+        <names variable="translator" delimiter=", " prefix="пер.&#160;">
+          <name et-al-min="3" et-al-use-first="3" initialize-with=".&#160;" name-as-sort-order="all" sort-separator=" " delimiter-precedes-et-al="never"/>
           <et-al term="et-al"/>
         </names>
       </if>
       <else>
         <names variable="translator" delimiter=", " prefix="transl. by ">
-          <name et-al-min="3" et-al-use-first="3" initialize-with=". " name-as-sort-order="all" sort-separator=" " delimiter-precedes-et-al="never"/>
+          <name et-al-min="3" et-al-use-first="3" initialize-with=".&#160;" name-as-sort-order="all" sort-separator=" " delimiter-precedes-et-al="never" />
           <et-al term="et-ale"/>
         </names>
       </else>
@@ -102,13 +102,13 @@
     <choose>
       <if variable="language">
         <names variable="editor reviewed-author collection-editor" delimiter=", " prefix="/ ">
-          <name et-al-min="3" et-al-use-first="3" initialize-with=". " name-as-sort-order="all" sort-separator=" " delimiter-precedes-et-al="never"/>
+          <name et-al-min="3" et-al-use-first="3" initialize-with=".&#160;" name-as-sort-order="all" sort-separator=" " delimiter-precedes-et-al="never" />
           <et-al term="et-al"/>
         </names>
       </if>
       <else>
         <names variable="editor reviewed-author collection-editor" delimiter=", " prefix="/ ed. ">
-          <name et-al-min="3" et-al-use-first="3" initialize-with=". " name-as-sort-order="all" sort-separator=" " delimiter-precedes-et-al="never"/>
+          <name et-al-min="3" et-al-use-first="3" initialize-with=".&#160;" name-as-sort-order="all" sort-separator=" " delimiter-precedes-et-al="never" />
           <et-al term="et-ale"/>
         </names>
       </else> 
@@ -183,14 +183,14 @@
       <choose>
         <if variable="language">
           <group delimiter=", ">
-            <text variable="volume" prefix="Т. "/>
-            <text variable="issue" prefix="Вип. "/>
+            <text variable="volume" prefix="Т.&#160;"/>
+            <text variable="issue" prefix="Вип.&#160;"/>
           </group>
         </if>
         <else>
           <group delimiter=", ">
-            <text variable="volume" prefix="Vol. "/>
-            <text variable="issue" prefix="Issue "/>
+            <text variable="volume" prefix="Vol.&#160;"/>
+            <text variable="issue" prefix="Issue&#160;"/>
           </group>
         </else>
       </choose>
@@ -203,12 +203,12 @@
           <if variable="language">
             <choose>
               <if is-numeric="volume">
-                <text value="Вип. "/>
+                <text value="Вип.&#160;"/>
               </if>
             </choose>
           </if>
           <else>
-            <text value="Vol. "/>
+            <text value="Vol.&#160;"/>
           </else>
         </choose>
         <text variable="volume"/>
@@ -244,7 +244,7 @@
         <text variable="issue" suffix=". "/>
       </if>
       <else>
-        <text value="Issue "/>
+        <text value="Issue&#160;"/>
         <text variable="issue" suffix=". "/>
       </else>
     </choose>
@@ -252,13 +252,13 @@
   <macro name="page">
     <choose>
       <if variable="language">
-        <label suffix=" " variable="page" form="short"/>
+        <label variable="page" form="short" suffix="&#160;"/>
       </if>
       <else>
-        <text value="P. "/>
+        <text value="P.&#160;"/>
       </else>
     </choose>
-    <text variable="page" suffix=". "/>
+    <text variable="page" suffix=" "/>
   </macro>
   <macro name="number-of-pages">
     <text variable="number-of-pages"/>
@@ -267,7 +267,7 @@
         <label suffix=" " variable="number-of-pages"/>
       </if>
       <else>
-        <text value=" p." suffix=" "/>
+        <text value="&#160;p." suffix=" "/>
       </else>
     </choose>
   </macro>
@@ -291,7 +291,7 @@
             </choose>
           </if>
           <else>
-            <text variable="URL" prefix="URL: " suffix=" "/>
+            <text variable="URL" prefix="URL:&#160;" suffix=" "/>
             <text macro="if_accessed"/>
           </else>
         </choose>
@@ -342,7 +342,7 @@
       <if variable="edition">
         <choose>
           <if variable="language" match="all">
-            <text variable="вид."/>
+            <text variable="вид.&#160;"/>
           </if>
           <else>
             <text variable="edition"/>
@@ -379,7 +379,7 @@
         <text variable="publisher-place"/>
         <choose>
           <if variable="publisher">
-            <text value=" : "/>
+            <text value="&#160;:&#160;"/>
           </if>
           <else>
             <choose>
@@ -645,7 +645,7 @@
           <text macro="abstract_insert" prefix=" " suffix=". "/>
           <text macro="If_event_date_exists" prefix="(Перша редакція " suffix="). "/>
           <text variable="volume"/>
-          <text variable="number" prefix="№" suffix=". "/>
+          <text variable="number" prefix="№&#160;" suffix=". "/>
           <text variable="references"/>
           <choose>
             <if variable="section">
