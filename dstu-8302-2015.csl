@@ -342,7 +342,7 @@
       <if variable="edition">
         <choose>
           <if variable="language" match="all">
-            <text variable="вид.&#160;"/>
+            <text value="вид.&#160;"/>
           </if>
           <else>
             <text variable="edition"/>
@@ -438,22 +438,22 @@
           <if variable="language">
             <choose>
               <if variable="volume">
-                <text variable="collection-title" prefix="(Серія &quot;" suffix="&quot;, "/>
+                <text variable="collection-title" prefix="(Серія «" suffix="», "/>
                 <text variable="volume" prefix="Т. " suffix=")"/>
               </if>
               <else>
-                <text variable="collection-title" prefix="(Серія &quot;" suffix="&quot;)"/>
+                <text variable="collection-title" prefix="(Серія «" suffix="»)"/>
               </else>
             </choose>
           </if>
           <else>
             <choose>
               <if match="all" variable="volume collection-title">
-                <text variable="collection-title" prefix="(&quot;" suffix="&quot; Series, "/>
+                <text variable="collection-title" prefix="(«" suffix="» Series, "/>
                 <text variable="volume" prefix="Vol. " suffix=")"/>
               </if>
               <else>
-                <text variable="collection-title" prefix="(&quot;" suffix="&quot; Series)"/>
+                <text variable="collection-title" prefix="(«" suffix="» Series)"/>
               </else>
             </choose>
           </else>
@@ -462,10 +462,10 @@
       <else-if match="any" type="article-journal article-magazine article-newspaper entry-dictionary entry-encyclopedia">
         <choose>
           <if variable="language">
-            <text variable="collection-title" prefix="(Серія &quot;" suffix="&quot;). "/>
+            <text variable="collection-title" prefix="(Серія «" suffix="»). "/>
           </if>
           <else>
-            <text variable="collection-title" prefix="(&quot;" suffix="&quot; Series)"/>
+            <text variable="collection-title" prefix="(«" suffix="» Series)"/>
           </else>
         </choose>
       </else-if>
