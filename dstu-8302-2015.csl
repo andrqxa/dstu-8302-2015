@@ -251,6 +251,44 @@
       </else>
     </choose>
   </macro>
+  <macro name="volume-issue-dstu-safe">
+    <choose>
+      <if variable="volume issue">
+        <group delimiter=", " suffix=". ">
+          <choose>
+            <if variable="language">
+              <text variable="volume" prefix="Т.&#160;"/>
+              <text variable="issue" prefix="№&#160;"/>
+            </if>
+            <else>
+              <text variable="volume" prefix="Vol.&#160;"/>
+              <text variable="issue" prefix="No.&#160;"/>
+            </else>
+          </choose>
+        </group>
+      </if>
+      <else-if variable="volume">
+        <choose>
+          <if variable="language">
+            <text variable="volume" prefix="Т.&#160;" suffix=". "/>
+          </if>
+          <else>
+            <text variable="volume" prefix="Vol.&#160;" suffix=". "/>
+          </else>
+        </choose>
+      </else-if>
+      <else-if variable="issue">
+        <choose>
+          <if variable="language">
+            <text variable="issue" prefix="№&#160;" suffix=". "/>
+          </if>
+          <else>
+            <text variable="issue" prefix="No.&#160;" suffix=". "/>
+          </else>
+        </choose>
+      </else-if>
+    </choose>
+  </macro>
   <macro name="page">
     <choose>
       <if variable="language">
@@ -260,7 +298,7 @@
         <text value="P.&#160;"/>
       </else>
     </choose>
-    <text variable="page" suffix=" "/>
+    <text variable="page"/>
   </macro>
   <macro name="number-of-pages">
     <text variable="number-of-pages"/>
@@ -269,7 +307,7 @@
         <label suffix=" " variable="number-of-pages"/>
       </if>
       <else>
-        <text value="&#160;p." suffix=" "/>
+        <text value="&#160;p."/>
       </else>
     </choose>
   </macro>
@@ -573,17 +611,17 @@
           <text macro="collection-title-series"/>
           <text macro="year" suffix=". "/>
           <text macro="editor" suffix=". "/>
-          <text macro="volume-issue-edition-commas_formatted"/>
-          <text macro="page"/>
+          <text macro="volume-issue-dstu-safe"/>
+          <text macro="page" suffix=". "/>
           <text macro="Internet-resources"/>
         </if>
-        <else-if type="chapter">
-          <text macro="author-all" suffix=". "/>
-          <text macro="section-title" suffix=". "/>
+        <else-if type="chapter">          
           <choose>
             <if variable="editor">
               <group delimiter="">
                 <group delimiter=". ">
+                  <text macro="author-all"/>
+                  <text macro="section-title"/>
                   <text macro="container-title"/>
                   <text macro="volume-for-books-T"/>
                 </group>
@@ -591,11 +629,12 @@
               </group>
             </if>
             <else>
-              <group delimiter=". ">
+              <group delimiter=". " suffix=". ">
+                <text macro="author-all"/>
+                <text macro="section-title"/>
                 <text macro="container-title"/>
                 <text macro="volume-for-books-T"/>
               </group>
-              <text value="."/>
             </else>
           </choose>
           <text macro="translator" suffix=" "/>
