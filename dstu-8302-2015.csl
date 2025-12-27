@@ -295,7 +295,7 @@
         <label variable="page" form="short" suffix="&#160;"/>
       </if>
       <else>
-        <text value="P.&#160;"/>
+        <text value="Pp.&#160;"/>
       </else>
     </choose>
     <text variable="page"/>
@@ -318,17 +318,9 @@
       </if>
       <else-if variable="URL">
         <choose>
-          <if match="any" variable="page number-of-pages publisher-place">
-            <choose>
-              <if match="all" variable="language">
-                <text variable="URL" prefix="Також доступний за посиланням: " suffix=" "/>
-                <text macro="if_accessed"/>
-              </if>
-              <else>
-                <text variable="URL" prefix="Also available online, URL: " suffix=" "/>
-                <text macro="if_accessed"/>
-              </else>
-            </choose>
+          <if match="any" variable="page number-of-pages publisher-place">            
+            <text variable="URL" prefix=" Також доступний за посиланням: " suffix=" "/>
+            <text macro="if_accessed"/>
           </if>
           <else>
             <text variable="URL" prefix="URL:&#160;" suffix=" "/>
@@ -344,18 +336,11 @@
   <macro name="if_accessed">
     <choose>
       <if variable="accessed">
-        <choose>
-          <if variable="language">
-            <date delimiter="." variable="accessed" text-case="lowercase" font-variant="normal" prefix="(дата звернення: " suffix=").">
-              <date-part name="day" form="numeric-leading-zeros"/>
-              <date-part name="month" form="numeric-leading-zeros"/>
-              <date-part name="year"/>
-            </date>
-          </if>
-          <else>
-            <date form="numeric" variable="accessed" prefix="(accessed " suffix=")."/>
-          </else>
-        </choose>
+        <date delimiter="." variable="accessed" text-case="lowercase" font-variant="normal" prefix="(дата звернення: " suffix=").">
+          <date-part name="day" form="numeric-leading-zeros"/>
+          <date-part name="month" form="numeric-leading-zeros"/>
+          <date-part name="year"/>
+        </date>
       </if>
     </choose>
   </macro>
